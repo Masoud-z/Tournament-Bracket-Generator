@@ -12,10 +12,10 @@ export default function Layout(props) {
     >
       <header
         className={`${styles.header} ${
-          darkMode ? styles.darkHeader : styles.lighHeader
+          darkMode ? styles.darkHeader : styles.lightHeader
         } `}
       >
-        <div className={styles.logo}>TournamentBracketGenerator</div>
+        <div className={styles.logo}>Tournament Bracket Generator</div>
 
         <nav className={styles.linksContainer}>
           <Link className={styles.navLink} href="/new">
@@ -26,7 +26,10 @@ export default function Layout(props) {
           </Link>
         </nav>
 
-        <div className={styles.darkMode} onClick={() => setDarkMode((perv) => !perv)}>
+        <div
+          className={styles.darkMode}
+          onClick={() => setDarkMode((perv) => !perv)}
+        >
           {darkMode ? <BsFillMoonFill /> : <BsMoon />}
           <p>Dark Mode</p>
         </div>
