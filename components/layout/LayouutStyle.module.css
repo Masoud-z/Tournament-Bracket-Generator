@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
