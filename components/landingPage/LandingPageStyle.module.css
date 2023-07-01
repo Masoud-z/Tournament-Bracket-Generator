@@ -9,3 +9,34 @@
 .container h1 {
   font-size: 48px;
 }
+
+.btnContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  color: unset;
+  text-decoration: none;
+  padding: 1.5rem 2rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: box-shadow 2s linear;
+  background: linear-gradient(#2976fb 0 0) no-repeat calc(200% - var(--p, 0%))
+    100% / 200% var(--p, 0.08em);
+  transition: 0.3s var(--t, 0s),
+    background-position 0.3s calc(0.3s - var(--t, 0s));
+}
+
+.btn:hover {
+  cursor: pointer;
+  --p: 100%;
+  --t: 0.3s;
+  color: #fff;
+}

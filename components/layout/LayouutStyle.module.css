@@ -33,6 +33,8 @@
 .logo {
   font-family: "Syne", sans-serif;
   font-weight: 700;
+  color: unset;
+  text-decoration: none;
 }
 
 .logo:hover {

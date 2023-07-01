@@ -15,7 +15,9 @@ export default function Layout(props) {
           darkMode ? styles.darkHeader : styles.lightHeader
         } `}
       >
-        <div className={styles.logo}>Tournament Bracket Generator</div>
+        <Link href="/" className={styles.logo}>
+          Tournament Bracket Generator
+        </Link>
 
         <nav className={styles.linksContainer}>
           <Link className={styles.navLink} href="/new">
