@@ -60,3 +60,11 @@ html {
   border-color: #d32f2f !important;
   color: #d32f2f !important;
 }
+.MuiButtonBase-root {
+  height: 36px;
+}
+
+.MuiCircularProgress-root {
+  width: 20px !important;
+  height: 20px !important;
+}

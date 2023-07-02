@@ -2,11 +2,13 @@ import { useContext } from "react";
 import Link from "next/link";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import { Dark } from "@/helper/Contexts";
+import { Dark, Msg } from "@/helper/Contexts";
 import styles from "./LayouutStyle.module.css";
+import { Alert, Slide, Snackbar } from "@mui/material";
 
 export default function Layout(props) {
   const { darkMode, setDarkMode } = useContext(Dark);
+  const { msg, setMsg } = useContext(Msg);
   return (
     <div
       className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}
@@ -38,6 +40,25 @@ export default function Layout(props) {
         </div>
       </header>
       <main>{props.children}</main>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        TransitionComponent={(props) => <Slide {...props} direction="left" />}
+        open={msg.open}
+        autoHideDuration={3000}
+        onClose={(event, reason) => {
+          if (reason !== "clickaway") {
+            setMsg({ open: false, message: "", type: "" });
+          }
+        }}
+        key="left"
+      >
+        <Alert variant="filled" severity={msg.type} sx={{ width: "100%" }}>
+          {msg.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

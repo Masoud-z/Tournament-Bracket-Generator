@@ -1,17 +1,21 @@
-import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useState, useContext } from "react";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import { Button, InputAdornment, TextField } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
-import RotateRightOutlinedIcon from "@mui/icons-material/RotateRightOutlined";
 
-import { auth } from "@/config/firebase";
+import { auth, googleProvider } from "@/config/firebase";
 
 import styles from "./SignupStyle.module.css";
+import { Msg } from "@/helper/Contexts";
 
 export default function Signup() {
+  const { setMsg } = useContext(Msg);
+  const route = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,9 +24,26 @@ export default function Signup() {
   } = useForm();
   const [userInfo, setUserInfo] = useState({ email: "", pass: "" });
   const [loading, setLoading] = useState(false);
+
   const createUser = async () => {
-    await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.pass);
+    setLoading(true);
+    await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.pass)
+      .then((userCredential) => {
+        setLoading(false);
+        setMsg({ open: true, message: "test", type: "success" });
+      })
+      .catch((err) => {});
   };
+
+  const google = async () => {
+    await signInWithPopup(auth, googleProvider);
+  };
+
+  const showMsg = () => {
+    route.push("./");
+    
+  };
+
   return (
     <div className={styles.container}>
       <h2>Create New Account</h2> <br />
@@ -76,23 +97,15 @@ export default function Signup() {
         onClick={handleSubmit(createUser)}
         disabled={loading}
       >
-        {loading ? (
-          <RotateRightOutlinedIcon className={styles.loading} />
-        ) : (
-          "Create"
-        )}
+        {loading ? <CircularProgress /> : "Create"}
       </Button>
       <Button
         className={styles.btn}
         variant="outlined"
-        onClick={handleSubmit(createUser)}
+        onClick={google}
         disabled={loading}
       >
-        {loading ? (
-          <RotateRightOutlinedIcon className={styles.loading} />
-        ) : (
-          "Continue with Google"
-        )}
+        {loading ? <CircularProgress /> : "Continue with Google"}
       </Button>
     </div>
   );
