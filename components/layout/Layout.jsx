@@ -1,14 +1,45 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+
+import { Alert, Slide, Snackbar } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import { Dark, Msg } from "@/helper/Contexts";
+
+import { Dark, Msg, logStatus } from "@/helper/Contexts";
 import styles from "./LayouutStyle.module.css";
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { auth } from "@/config/firebase";
 
 export default function Layout(props) {
+  const { loggedIn, setLoggedIn } = useContext(logStatus);
   const { darkMode, setDarkMode } = useContext(Dark);
   const { msg, setMsg } = useContext(Msg);
+  const logOut = async () => {
+    await signOut(auth)
+      .then(() =>
+        setMsg({
+          open: true,
+          message: "You successfully signed out",
+          type: "success",
+        })
+      )
+      .catch((err) => {
+        setMsg({
+          open: true,
+          message: err.message,
+          type: "error",
+        });
+      });
+  };
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+      setLoggedIn(true);
+    } else {
+      console.log("false");
+      setLoggedIn(false);
+    }
+  });
   return (
     <div
       className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}
@@ -22,21 +53,29 @@ export default function Layout(props) {
           Tournament Bracket Generator
         </Link>
 
-        <nav className={styles.linksContainer}>
-          <Link className={styles.navLink} href="/new">
-            Create new Tournament
-          </Link>
-          <Link className={styles.navLink} href="/list">
-            Tournaments List
-          </Link>
-        </nav>
+        {loggedIn && (
+          <nav className={styles.linksContainer}>
+            <Link className={styles.navLink} href="/new">
+              Create new Tournament
+            </Link>
+            <Link className={styles.navLink} href="/list">
+              Tournaments List
+            </Link>
+          </nav>
+        )}
 
-        <div
-          className={styles.darkMode}
-          onClick={() => setDarkMode((perv) => !perv)}
-        >
-          {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
-          <p>Dark Mode</p>
+        <div className={styles.linksContainer}>
+          {loggedIn && (
+            <span className={styles.signOut} onClick={logOut}>
+              Sign Out
+            </span>
+          )}
+          <div
+            className={styles.darkMode}
+            onClick={() => setDarkMode((perv) => !perv)}
+          >
+            {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
+          </div>
         </div>
       </header>
       <main>{props.children}</main>

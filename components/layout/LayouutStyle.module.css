@@ -55,11 +55,15 @@
   text-decoration: none;
 }
 
-.darkMode {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+.signOut {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.signOut:hover {
+  background-color: #666;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .darkMode:hover {
