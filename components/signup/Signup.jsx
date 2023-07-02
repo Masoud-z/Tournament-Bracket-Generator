@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 import { useForm } from "react-hook-form";
+
 import { useRouter } from "next/navigation";
 
 import { Button, InputAdornment, TextField } from "@mui/material";
@@ -8,10 +9,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 import { auth, googleProvider } from "@/config/firebase";
+import { Msg, logStatus } from "@/helper/Contexts";
 
 import styles from "./SignupStyle.module.css";
-import { Msg, logStatus } from "@/helper/Contexts";
 
 export default function Signup() {
   const route = useRouter();
