@@ -68,7 +68,7 @@ export default function SignIn() {
 
   return (
     <div className={styles.container}>
-      <h2>Create New Account</h2> <br />
+      <h2>Sign In</h2> <br />
       <div className={styles.inputs}>
         <TextField
           {...register("email", { required: true })}
