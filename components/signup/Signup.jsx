@@ -25,23 +25,35 @@ export default function Signup() {
   const [userInfo, setUserInfo] = useState({ email: "", pass: "" });
   const [loading, setLoading] = useState(false);
 
+  const success = () => {
+    setLoading(false);
+    route.push("./");
+    setMsg({
+      open: true,
+      message: "Your account has been created successfully",
+      type: "success",
+    });
+  };
+  const error = (message) => {
+    setLoading(false);
+    setMsg({
+      open: true,
+      message: message,
+      type: "error",
+    });
+  };
   const createUser = async () => {
     setLoading(true);
     await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.pass)
-      .then((userCredential) => {
-        setLoading(false);
-        setMsg({ open: true, message: "test", type: "success" });
-      })
-      .catch((err) => {});
+      .then(() => success())
+      .catch((err) => error(err.message));
   };
 
   const google = async () => {
-    await signInWithPopup(auth, googleProvider);
-  };
-
-  const showMsg = () => {
-    route.push("./");
-    
+    setLoading(true);
+    await signInWithPopup(auth, googleProvider)
+      .then(() => success())
+      .catch((err) => error(err.message));
   };
 
   return (
@@ -70,16 +82,16 @@ export default function Signup() {
           }}
         />
         <TextField
-          {...register("passsword", { required: true })}
-          id="passsword"
+          {...register("password", { required: true })}
+          id="password"
           label={errors.passsword ? "Password is required" : "Password"}
           variant="outlined"
-          type="passsword"
-          error={errors.passsword}
-          onClick={() => clearErrors("passsword")}
+          type="password"
+          error={errors.password}
+          onClick={() => clearErrors("password")}
           onChange={(e) => {
             setUserInfo((prev) => {
-              return { ...prev, email: e.target.value };
+              return { ...prev, pass: e.target.value };
             });
           }}
           InputProps={{
