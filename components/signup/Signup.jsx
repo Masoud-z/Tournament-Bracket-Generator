@@ -11,10 +11,9 @@ import PasswordIcon from "@mui/icons-material/Password";
 import { auth, googleProvider } from "@/config/firebase";
 
 import styles from "./SignupStyle.module.css";
-import { Msg } from "@/helper/Contexts";
+import { Msg, logStatus } from "@/helper/Contexts";
 
 export default function Signup() {
-  const { setMsg } = useContext(Msg);
   const route = useRouter();
   const {
     register,
@@ -22,8 +21,20 @@ export default function Signup() {
     clearErrors,
     formState: { errors },
   } = useForm();
+
+  const { setMsg } = useContext(Msg);
+  const { loggedIn } = useContext(logStatus);
+
   const [userInfo, setUserInfo] = useState({ email: "", pass: "" });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    //Check If user is already logged in
+    if (loggedIn) {
+      //Redirect to landing page
+      route.push("./");
+    }
+  }, []);
 
   const success = () => {
     setLoading(false);
