@@ -4,12 +4,14 @@
 
 .dark {
   background-color: #222;
-  color: aliceblue;
+  color: white;
+  border-color: #fafafa;
 }
 
 .light {
   background-color: #fafafa;
   color: #000;
+  border-color: #222;
 }
 
 .header {

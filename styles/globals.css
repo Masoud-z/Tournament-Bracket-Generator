@@ -12,3 +12,51 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+.LayouutStyle_dark___hyrn .MuiOutlinedInput-notchedOutline,
+.LayouutStyle_dark___hyrn .MuiButtonBase-root {
+  color: white;
+  border-color: #f1f1f1;
+}
+
+.LayouutStyle_light__haqMN .MuiOutlinedInput-notchedOutline,
+.LayouutStyle_light__haqMN .MuiButtonBase-root {
+  border-color: #222;
+  color: #222;
+}
+
+.MuiButtonBase-root:hover {
+  color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+
+.LayouutStyle_dark___hyrn .MuiFormLabel-root {
+  color: white;
+}
+
+.LayouutStyle_light__haqMN .MuiFormLabel-root {
+  color: black;
+}
+
+.Mui-focused {
+  color: #1976d2 !important;
+}
+
+.MuiTextField-root {
+  width: 400px;
+}
+
+.LayouutStyle_dark___hyrn .MuiSvgIcon-root,
+.LayouutStyle_dark___hyrn .MuiInputBase-input {
+  color: white;
+}
+
+.LayouutStyle_light__haqMN .MuiSvgIcon-root,
+.LayouutStyle_light__haqMN .MuiInputBase-input {
+  color: black;
+}
+
+.Mui-error {
+  border-color: #d32f2f !important;
+  color: #d32f2f !important;
+}

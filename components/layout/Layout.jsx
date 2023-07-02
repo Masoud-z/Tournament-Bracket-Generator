@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
-import { BsFillMoonFill, BsMoon } from "react-icons/bs";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { Dark } from "@/helper/Contexts";
 import styles from "./LayouutStyle.module.css";
 
@@ -32,7 +33,7 @@ export default function Layout(props) {
           className={styles.darkMode}
           onClick={() => setDarkMode((perv) => !perv)}
         >
-          {darkMode ? <BsFillMoonFill /> : <BsMoon />}
+          {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
           <p>Dark Mode</p>
         </div>
       </header>
