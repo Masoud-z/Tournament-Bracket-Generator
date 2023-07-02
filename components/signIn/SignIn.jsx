@@ -10,17 +10,10 @@ import PasswordIcon from "@mui/icons-material/Password";
 
 import { auth, googleProvider } from "@/config/firebase";
 
-import styles from "./SignupStyle.module.css";
+import styles from "./SignInStyle.module.css";
 import { Msg, logStatus } from "@/helper/Contexts";
 
-export default function Signup() {
-  const { loggedIn } = useContext(logStatus);
-  useEffect(() => {
-    if (loggedIn) {
-      route.push("./");
-    }
-  }, []);
-  const { setMsg } = useContext(Msg);
+export default function SignIn() {
   const route = useRouter();
   const {
     register,
@@ -28,6 +21,17 @@ export default function Signup() {
     clearErrors,
     formState: { errors },
   } = useForm();
+
+  const { loggedIn } = useContext(logStatus);
+  const { setMsg } = useContext(Msg);
+
+  useEffect(() => {
+    //Check If user is already logged in
+    if (loggedIn) {
+      route.push("./");
+    }
+  }, [loggedIn]);
+
   const [userInfo, setUserInfo] = useState({ email: "", pass: "" });
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +52,7 @@ export default function Signup() {
       type: "error",
     });
   };
-  const createUser = async () => {
+  const signIn = async () => {
     setLoading(true);
     await signInWithEmailAndPassword(auth, userInfo.email, userInfo.pass)
       .then(() => success())
@@ -112,10 +116,10 @@ export default function Signup() {
       <Button
         className={styles.btn}
         variant="outlined"
-        onClick={handleSubmit(createUser)}
+        onClick={handleSubmit(signIn)}
         disabled={loading}
       >
-        {loading ? <CircularProgress /> : "Create"}
+        {loading ? <CircularProgress /> : "Sign in"}
       </Button>
       <Button
         className={styles.btn}

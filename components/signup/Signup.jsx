@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -34,7 +34,7 @@ export default function Signup() {
       //Redirect to landing page
       route.push("./");
     }
-  }, []);
+  }, [loggedIn]);
 
   const success = () => {
     setLoading(false);
