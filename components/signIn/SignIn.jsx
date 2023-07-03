@@ -71,9 +71,9 @@ export default function SignIn() {
     <div className={styles.container}>
       <div className="header">
         <h2>Sign In</h2>
-        <Link href="./" className="backBtn">
+        <div onClick={route.back} className="backBtn">
           Back
-        </Link>
+        </div>
       </div>
       <div className="inputs">
         <TextField

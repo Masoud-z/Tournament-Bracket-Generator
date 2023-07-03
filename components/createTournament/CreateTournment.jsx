@@ -108,6 +108,7 @@ export default function CreateTournment() {
     );
   }
 
+  //Create the game
   const submit = async () => {
     setLoading(true);
     await addDoc(games, {
@@ -136,16 +137,12 @@ export default function CreateTournment() {
       });
   };
   return (
-    <div
-      className={`${styles.container} ${
-        darkMode ? styles.darkShadow : styles.lightShadow
-      }`}
-    >
+    <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
       <div className="header">
         <h1>New Tournment</h1>
-        <Link href="./" className="backBtn">
+        <div onClick={route.back} className="backBtn">
           Back
-        </Link>
+        </div>
       </div>
       <div className="inputs">
         <TextField

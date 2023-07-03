@@ -75,9 +75,9 @@ export default function Signup() {
     <div className={styles.container}>
       <div className="header">
         <h2>Create New Account</h2>
-        <Link href="./" className="backBtn">
+        <div onClick={route.back} className="backBtn">
           Back
-        </Link>
+        </div>
       </div>
 
       <div className="inputs">
