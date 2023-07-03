@@ -36,7 +36,7 @@ export default function Signup() {
     //Check If user is already logged in
     if (loggedIn) {
       //Redirect to landing page
-      route.push("./");
+      route.back();
     }
   }, [loggedIn]);
 

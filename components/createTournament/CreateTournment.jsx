@@ -42,7 +42,7 @@ export default function CreateTournment() {
     //Check If user logged in
     if (!loggedIn) {
       //Redirect to landing page
-      route.push("./");
+      route.back();
     }
   }, [loggedIn]);
 
