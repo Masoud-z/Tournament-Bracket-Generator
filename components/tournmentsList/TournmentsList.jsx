@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import { collection, getDocs } from "firebase/firestore";
 
-
 import styles from "./TournmentsList.module.css";
 import { Msg, logStatus, Dark } from "@/helper/Contexts";
 import { auth, db } from "@/config/firebase";
@@ -31,12 +30,14 @@ export default function TournmentsList() {
           const list = data.docs.filter(
             (doc) => doc.data().userId == auth.currentUser.uid
           );
-          setGamesList(
-            list.map((doc) => ({
-              ...doc.data(),
-              id: doc.id,
-            }))
-          );
+
+          const dataList = list.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+
+          dataList.sort((a, b) => a.creted_at - b.created_at);
+          setGamesList(dataList);
         })
         .catch((err) =>
           setMsg({
