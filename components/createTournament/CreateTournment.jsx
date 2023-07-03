@@ -119,8 +119,9 @@ export default function CreateTournment() {
       playersCount: game.playersCount,
       userId: auth.currentUser.uid,
     })
-      .then(() => {
+      .then((data) => {
         setLoading(false);
+        route.push(`/game/${data.id}`);
         setMsg({
           open: true,
           message: "Game created!",
