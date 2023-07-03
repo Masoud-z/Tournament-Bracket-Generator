@@ -5,8 +5,6 @@ import Link from "next/link";
 
 import { collection, getDocs } from "firebase/firestore";
 
-import { Autocomplete, Button, TextField } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import styles from "./TournmentsList.module.css";
 import { Msg, logStatus, Dark } from "@/helper/Contexts";
