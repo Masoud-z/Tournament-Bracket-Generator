@@ -1,20 +1,35 @@
 .container {
-    margin: 20px 10vw;
-    padding: 20px;
-    border: 1px solid;
-    border-radius: 10px;
-  }
-  
-  .inputs {
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .btn {
-    width: 225px;
-    margin: 0 10px;
-  }
-  
-  
+  margin: 20px 10vw;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backBtn {
+  color: unset;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.backBtn:hover {
+  background-color: #888;
+}
+
+.inputs {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  width: 225px;
+  margin: 0 10px;
+}

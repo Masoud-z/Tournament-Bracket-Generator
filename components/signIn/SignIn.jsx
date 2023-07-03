@@ -12,6 +12,7 @@ import { auth, googleProvider } from "@/config/firebase";
 
 import styles from "./SignInStyle.module.css";
 import { Msg, logStatus } from "@/helper/Contexts";
+import Link from "next/link";
 
 export default function SignIn() {
   const route = useRouter();
@@ -68,7 +69,12 @@ export default function SignIn() {
 
   return (
     <div className={styles.container}>
-      <h2>Sign In</h2> <br />
+      <div className={styles.header}>
+        <h2>Sign In</h2>
+        <Link href="./" className={styles.backBtn}>
+          Back
+        </Link>
+      </div>
       <div className={styles.inputs}>
         <TextField
           {...register("email", { required: true })}
