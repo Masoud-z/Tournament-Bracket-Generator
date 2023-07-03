@@ -69,13 +69,13 @@ export default function SignIn() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className="header">
         <h2>Sign In</h2>
-        <Link href="./" className={styles.backBtn}>
+        <Link href="./" className="backBtn">
           Back
         </Link>
       </div>
-      <div className={styles.inputs}>
+      <div className="inputs">
         <TextField
           {...register("email", { required: true })}
           id="email"
@@ -120,7 +120,7 @@ export default function SignIn() {
         />
       </div>
       <Button
-        className={styles.btn}
+        className="btn"
         variant="outlined"
         onClick={handleSubmit(signIn)}
         disabled={loading}
@@ -128,7 +128,7 @@ export default function SignIn() {
         {loading ? <CircularProgress /> : "Sign in"}
       </Button>
       <Button
-        className={styles.btn}
+        className="btn"
         variant="outlined"
         onClick={google}
         disabled={loading}

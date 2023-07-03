@@ -81,3 +81,35 @@ html {
   width: 20px !important;
   height: 20px !important;
 }
+/* ----------------------++++---------------------- */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.backBtn {
+  color: unset;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.backBtn:hover {
+  background-color: #888;
+}
+
+/* inputs row container */
+.inputs {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  width: 225px;
+  margin: 0 10px;
+}

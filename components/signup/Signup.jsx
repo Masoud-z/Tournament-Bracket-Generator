@@ -73,12 +73,14 @@ export default function Signup() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className="header">
         <h2>Create New Account</h2>
-        <Link href="./" className={styles.backBtn}>Back</Link>
+        <Link href="./" className="backBtn">
+          Back
+        </Link>
       </div>
 
-      <div className={styles.inputs}>
+      <div className="inputs">
         <TextField
           {...register("email", { required: true })}
           id="email"
@@ -123,7 +125,7 @@ export default function Signup() {
         />
       </div>
       <Button
-        className={styles.btn}
+        className="btn"
         variant="outlined"
         onClick={handleSubmit(createUser)}
         disabled={loading}
@@ -131,7 +133,7 @@ export default function Signup() {
         {loading ? <CircularProgress /> : "Create"}
       </Button>
       <Button
-        className={styles.btn}
+        className="btn"
         variant="outlined"
         onClick={google}
         disabled={loading}
