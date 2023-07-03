@@ -15,6 +15,7 @@ import { auth, googleProvider } from "@/config/firebase";
 import { Msg, logStatus } from "@/helper/Contexts";
 
 import styles from "./SignupStyle.module.css";
+import Link from "next/link";
 
 export default function Signup() {
   const route = useRouter();
@@ -72,7 +73,11 @@ export default function Signup() {
 
   return (
     <div className={styles.container}>
-      <h2>Create New Account</h2> <br />
+      <div className={styles.header}>
+        <h2>Create New Account</h2>
+        <Link href="./" className={styles.backBtn}>Back</Link>
+      </div>
+
       <div className={styles.inputs}>
         <TextField
           {...register("email", { required: true })}
