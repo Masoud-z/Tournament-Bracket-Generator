@@ -33,10 +33,8 @@ export default function Layout(props) {
   };
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
       setLoggedIn(true);
     } else {
-      console.log("false");
       setLoggedIn(false);
     }
   });

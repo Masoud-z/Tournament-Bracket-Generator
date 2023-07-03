@@ -2,7 +2,7 @@
   margin: 25px 15px;
   padding: 20px 10px;
   border-radius: 10px;
-  height: 50vh;
+  min-height: 50vh;
 }
 
 .darkShadow {
@@ -11,4 +11,27 @@
 
 .lightShadow {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nameInputs {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.group {
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.group h3 {
+  margin-bottom: 10px;
 }

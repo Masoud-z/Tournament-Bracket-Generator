@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { Button, InputAdornment, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,7 +13,6 @@ import { auth, googleProvider } from "@/config/firebase";
 
 import styles from "./SignInStyle.module.css";
 import { Msg, logStatus } from "@/helper/Contexts";
-import Link from "next/link";
 
 export default function SignIn() {
   const route = useRouter();
