@@ -3,15 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { collection, addDoc } from "firebase/firestore";
+
 import { Controller, useForm } from "react-hook-form";
 
-import { Autocomplete, Button, InputAdornment, TextField } from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import styles from "./CreateTournmentStyles.module.css";
 import { Msg, logStatus, Dark } from "@/helper/Contexts";
+import { auth, db } from "@/config/firebase";
 
 export default function CreateTournment() {
+  const games = collection(db, "games");
   const route = useRouter();
   const {
     register,
@@ -32,6 +36,7 @@ export default function CreateTournment() {
     groups: null,
     playersCount: null,
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     //Check If user logged in
@@ -50,6 +55,7 @@ export default function CreateTournment() {
     return power;
   };
 
+  //Set player base on number of players that user select
   const onSetPlayer = (count) => {
     const players = [];
     for (let i = 1; i <= count; i++) {
@@ -71,6 +77,7 @@ export default function CreateTournment() {
     });
   };
 
+  //Put each two user into one group to show them base on groups
   const groups = [];
   for (let i = 1; i <= game.groups; i++) {
     const groupPlayers = game.players.filter((player) => player.group === i);
@@ -93,7 +100,7 @@ export default function CreateTournment() {
             setGame((prev) => {
               const newplayers = prev.players;
               newplayers[player.id - 1].playerName = e.target.value;
-              return { ...prev, name: newplayers };
+              return { ...prev, players: newplayers };
             });
           }}
         />
@@ -101,6 +108,33 @@ export default function CreateTournment() {
     );
   }
 
+  const submit = async () => {
+    setLoading(true);
+    await addDoc(games, {
+      name: game.name,
+      levels: game.levels,
+      players: game.players,
+      groups: game.groups,
+      playersCount: game.playersCount,
+      userId: auth.currentUser.uid,
+    })
+      .then(() => {
+        setLoading(false);
+        setMsg({
+          open: true,
+          message: "Game created!",
+          type: "success",
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        setMsg({
+          open: true,
+          message: err.message,
+          type: "error",
+        });
+      });
+  };
   return (
     <div
       className={`${styles.container} ${
@@ -120,7 +154,7 @@ export default function CreateTournment() {
           label={errors.name ? "Tournment name is required" : "Tournment name"}
           variant="outlined"
           type="text"
-          error={errors.email}
+          error={errors.name}
           onClick={() => clearErrors("name")}
           onChange={(e) => {
             setGame((prev) => {
@@ -142,7 +176,7 @@ export default function CreateTournment() {
               options={participantsCount}
               onChange={(event, option) => {
                 onChange(option);
-                onSetPlayer(option?.id ? option.id : 0);
+                onSetPlayer(option?.id);
               }}
               renderInput={(params) => (
                 <TextField {...params} label="Number of participants" />
@@ -159,6 +193,16 @@ export default function CreateTournment() {
           </div>
         ))}
       </div>
+      {game.playersCount && (
+        <Button
+          className="btn"
+          variant="outlined"
+          onClick={handleSubmit(submit)}
+          disabled={loading}
+        >
+          {loading ? <CircularProgress /> : "Submit the Tournment"}
+        </Button>
+      )}
     </div>
   );
 }

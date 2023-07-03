@@ -83,6 +83,12 @@ html {
 }
 /* ----------------------++++---------------------- */
 
+/* Change the transition of pop up of Autocomplete of Material UI */
+.MuiAutocomplete-popper {
+  transition: none !important;
+}
+/* ----------------------++++---------------------- */
+
 .header {
   display: flex;
   justify-content: space-between;
