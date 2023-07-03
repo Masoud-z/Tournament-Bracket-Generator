@@ -15,7 +15,7 @@ import { Msg, logStatus, Dark } from "@/helper/Contexts";
 import { auth, db } from "@/config/firebase";
 
 export default function CreateTournment() {
-  const games = collection(db, "games");
+  const gamesRef = collection(db, "games");
   const route = useRouter();
   const {
     register,
@@ -111,7 +111,7 @@ export default function CreateTournment() {
   //Create the game
   const submit = async () => {
     setLoading(true);
-    await addDoc(games, {
+    await addDoc(gamesRef, {
       name: game.name,
       levels: game.levels,
       players: game.players,

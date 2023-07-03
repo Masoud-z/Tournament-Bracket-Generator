@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 import { Autocomplete, Button, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -13,20 +13,14 @@ import { Msg, logStatus, Dark } from "@/helper/Contexts";
 import { auth, db } from "@/config/firebase";
 
 export default function TournmentsList() {
-  const games = collection(db, "games");
+  const gamesRef = collection(db, "games");
   const route = useRouter();
 
   const { setMsg } = useContext(Msg);
   const { loggedIn } = useContext(logStatus);
   const { darkMode } = useContext(Dark);
 
-  const [game, setGame] = useState({
-    name: "",
-    levels: null,
-    players: [],
-    groups: null,
-    playersCount: null,
-  });
+  const [gamesList, setGamesList] = useState([]);
 
   useEffect(() => {
     //Check If user logged in
@@ -34,8 +28,28 @@ export default function TournmentsList() {
       //Redirect to landing page
       route.back();
     } else {
+      getDocs(collection(db, "games"))
+        .then((data) => {
+          const list = data.docs.filter(
+            (doc) => doc.data().userId == auth.currentUser.uid
+          );
+          setGamesList(
+            list.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }))
+          );
+        })
+        .catch((err) =>
+          setMsg({
+            open: true,
+            message: err.message,
+            type: "error",
+          })
+        );
     }
   }, [loggedIn]);
+
   return (
     <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
       <div className="header">
@@ -43,6 +57,11 @@ export default function TournmentsList() {
         <div onClick={route.back} className="backBtn">
           Back
         </div>
+      </div>
+      <div className={styles.gamesList}>
+        {gamesList.map((game) => (
+          <div className={styles.game}>{game.name}</div>
+        ))}
       </div>
     </div>
   );
