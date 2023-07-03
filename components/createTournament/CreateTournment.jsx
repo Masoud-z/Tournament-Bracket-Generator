@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Msg, logStatus } from "@/helper/Contexts";
 import { useRouter } from "next/navigation";
+import styles from "./CreateTournmentStyles.module.css"
 
 export default function CreateTournment() {
   const route = useRouter();
@@ -14,5 +15,6 @@ export default function CreateTournment() {
       route.push("./");
     }
   }, [loggedIn]);
-  return <></>;
+  return <div className={styles.container}>
+  </div>;
 }

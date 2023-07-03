@@ -13,6 +13,7 @@ html {
   box-sizing: border-box;
 }
 
+/* Change the color of text, border and size of Material UI Buttons */
 .LayouutStyle_dark___hyrn .MuiOutlinedInput-notchedOutline,
 .LayouutStyle_dark___hyrn .MuiButtonBase-root {
   color: white;
@@ -30,6 +31,13 @@ html {
   border-color: #1976d2 !important;
 }
 
+.MuiButtonBase-root {
+  height: 36px;
+}
+
+/* ----------------------++++---------------------- */
+
+/* Change the color of label of TextFields of Material UI */
 .LayouutStyle_dark___hyrn .MuiFormLabel-root {
   color: white;
 }
@@ -41,11 +49,15 @@ html {
 .Mui-focused {
   color: #1976d2 !important;
 }
+/* ----------------------++++---------------------- */
 
+/* Change the size of label of TextFields of Material UI */
 .MuiTextField-root {
   width: 400px;
 }
+/* ----------------------++++---------------------- */
 
+/* Change the color of icons of Material UI */
 .LayouutStyle_dark___hyrn .MuiSvgIcon-root,
 .LayouutStyle_dark___hyrn .MuiInputBase-input {
   color: white;
@@ -55,15 +67,16 @@ html {
 .LayouutStyle_light__haqMN .MuiInputBase-input {
   color: black;
 }
+/* ----------------------++++---------------------- */
 
+/* Change the color of error of Material UI */
 .Mui-error {
   border-color: #d32f2f !important;
   color: #d32f2f !important;
 }
-.MuiButtonBase-root {
-  height: 36px;
-}
+/* ----------------------++++---------------------- */
 
+/* Change the size of progress circle of Material UI */
 .MuiCircularProgress-root {
   width: 20px !important;
   height: 20px !important;
