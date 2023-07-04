@@ -1,11 +1,11 @@
-import Game from "@/components/game/Game";
+import Tournment from "@/components/game/Tournment";
 import { useRouter } from "next/router";
 
 export default function index() {
   const router = useRouter();
   return (
     <>
-      <Game gameId={router.query.gameId} />
+      <Tournment tournmentId={router.query.tournmentId} />
     </>
   );
 }

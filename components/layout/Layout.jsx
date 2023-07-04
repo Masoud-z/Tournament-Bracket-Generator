@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 
 import { Alert, Slide, Snackbar } from "@mui/material";
@@ -11,18 +12,20 @@ import styles from "./LayouutStyle.module.css";
 import { auth } from "@/config/firebase";
 
 export default function Layout(props) {
+  const router = useRouter();
   const { loggedIn, setLoggedIn } = useContext(logStatus);
   const { darkMode, setDarkMode } = useContext(Dark);
   const { msg, setMsg } = useContext(Msg);
   const logOut = async () => {
     await signOut(auth)
-      .then(() =>
+      .then(() => {
+        router.push("./");
         setMsg({
           open: true,
           message: "You successfully signed out",
           type: "success",
-        })
-      )
+        });
+      })
       .catch((err) => {
         setMsg({
           open: true,

@@ -122,7 +122,7 @@ export default function CreateTournment() {
     })
       .then((data) => {
         setLoading(false);
-        route.push(`/game/${data.id}`);
+        route.push(`/tournment/${data.id}`);
         setMsg({
           open: true,
           message: "Game created!",

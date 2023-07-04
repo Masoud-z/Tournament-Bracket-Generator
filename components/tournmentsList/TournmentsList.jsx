@@ -59,7 +59,11 @@ export default function TournmentsList() {
       </div>
       <div className={styles.gamesList}>
         {gamesList.map((game) => (
-          <Link href={`/game/${game.id}`} className={styles.game}>
+          <Link
+            key={game.id}
+            href={`/tournment/${game.id}`}
+            className={styles.game}
+          >
             {game.name}
           </Link>
         ))}
