@@ -8,6 +8,7 @@ import styles from "./Tournment.module.css";
 import { Msg, logStatus, Dark } from "@/helper/Contexts";
 import { db } from "@/config/firebase";
 import { useForm } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
 
 export default function Tournment({ tournmentId }) {
   const {
@@ -22,6 +23,7 @@ export default function Tournment({ tournmentId }) {
   const { darkMode } = useContext(Dark);
 
   const [tournment, setTournment] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (loggedIn) {
@@ -30,6 +32,7 @@ export default function Tournment({ tournmentId }) {
       getDoc(gameRef)
         .then((tournment) => {
           setTournment({ ...tournment.data(), id: tournment.id });
+          setLoading(false);
         })
         .catch((err) => {
           setMsg({
@@ -114,6 +117,11 @@ export default function Tournment({ tournmentId }) {
   }
   return (
     <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
+      {loading && (
+        <div className="center">
+          <CircularProgress />
+        </div>
+      )}
       {tournment && (
         <>
           <h1>{tournment.name}</h1>
