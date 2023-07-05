@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 import styles from "./TournmentsList.module.css";
 import { Msg, logStatus, Dark } from "@/helper/Contexts";
 import { auth, db } from "@/config/firebase";
+import { CircularProgress } from "@mui/material";
 
 export default function TournmentsList() {
   const gamesRef = collection(db, "games");
@@ -18,6 +19,7 @@ export default function TournmentsList() {
   const { darkMode } = useContext(Dark);
 
   const [gamesList, setGamesList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     //Check If user logged in
@@ -37,15 +39,17 @@ export default function TournmentsList() {
           }));
 
           dataList.sort((a, b) => a.creted_at - b.created_at);
+          setLoading(false);
           setGamesList(dataList);
         })
-        .catch((err) =>
+        .catch((err) => {
+          setLoading(false);
           setMsg({
             open: true,
             message: err.message,
             type: "error",
-          })
-        );
+          });
+        });
     }
   }, [loggedIn]);
 
@@ -57,6 +61,12 @@ export default function TournmentsList() {
           Back
         </div>
       </div>
+      {loading && (
+        <div className="center">
+          <CircularProgress />
+        </div>
+      )}
+
       <div className={styles.gamesList}>
         {gamesList.map((game) => (
           <Link

@@ -96,6 +96,12 @@ html {
   margin-bottom: 30px;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .backBtn {
   color: unset;
   text-decoration: none;
