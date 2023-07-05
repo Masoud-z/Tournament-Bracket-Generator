@@ -1,0 +1,81 @@
+.championTitle {
+  margin: 20px 50px;
+}
+
+.championContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.champion {
+  width: max-content;
+  padding: 10px 30px;
+  background-color: gold;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+.levels {
+  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.round {
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.roundTitle {
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+.group {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.player {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px dotted;
+  gap: 15px;
+  border-radius: 5px;
+}
+
+.playerInput {
+  border: none;
+  border-radius: 5px;
+  width: 70px;
+}
+
+.darkInput {
+  background-color: #444;
+}
+
+.lightInput {
+  background-color: #ccc;
+}

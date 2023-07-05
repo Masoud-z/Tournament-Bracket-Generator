@@ -42,7 +42,7 @@ export default function CreateTournment() {
     //Check If user logged in
     if (!loggedIn) {
       //Redirect to landing page
-      route.back();
+      route.push("/");
     }
   }, [loggedIn]);
 
@@ -62,8 +62,9 @@ export default function CreateTournment() {
       players.push({
         id: i,
         playerName: "",
-        level: 0,
-        group: Math.ceil(i / 2),
+        level: 1,
+        group1: Math.ceil(i / 2),
+        result1: null,
       });
     }
     setGame((prev) => {
@@ -73,6 +74,8 @@ export default function CreateTournment() {
         players: players,
         groups: count / 2,
         playersCount: count,
+        finished: false,
+        winner: "",
       };
     });
   };
@@ -80,7 +83,7 @@ export default function CreateTournment() {
   //Put each two user into one group to show them base on groups
   const groups = [];
   for (let i = 1; i <= game.groups; i++) {
-    const groupPlayers = game.players.filter((player) => player.group === i);
+    const groupPlayers = game.players.filter((player) => player.group1 === i);
     groups.push(
       groupPlayers.map((player) => (
         <TextField
