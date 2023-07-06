@@ -27,6 +27,7 @@ export default function TournmentsList() {
       //Redirect to landing page
       route.push("/");
     } else {
+      //Get tournments list from server
       getDocs(collection(db, "games"))
         .then((data) => {
           const list = data.docs.filter(
@@ -37,8 +38,8 @@ export default function TournmentsList() {
             ...doc.data(),
             id: doc.id,
           }));
-
-          dataList.sort((a, b) => a.creted_at - b.created_at);
+          //sort list based on creation time
+          dataList.sort((a, b) => b.created_at - a.created_at);
           setLoading(false);
           setGamesList(dataList);
         })
