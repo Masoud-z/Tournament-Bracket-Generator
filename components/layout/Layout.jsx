@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { Alert, Backdrop, CircularProgress, Slide, Snackbar } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
@@ -16,6 +16,9 @@ export default function Layout(props) {
   const { loggedIn, setLoggedIn } = useContext(logStatus);
   const { darkMode, setDarkMode } = useContext(Dark);
   const { msg, setMsg } = useContext(Msg);
+
+  const [openLoading, setOpenLoading] = useState(true);
+
   const logOut = async () => {
     await signOut(auth)
       .then(() => {
@@ -40,6 +43,7 @@ export default function Layout(props) {
     } else {
       setLoggedIn(false);
     }
+    setOpenLoading(false);
   });
   return (
     <div
@@ -99,6 +103,12 @@ export default function Layout(props) {
           {msg.message}
         </Alert>
       </Snackbar>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

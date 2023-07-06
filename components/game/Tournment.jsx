@@ -254,7 +254,6 @@ export default function Tournment({ tournmentId }) {
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={openLoading}
-        onClick={() => setOpenLoading(false)}
       >
         <CircularProgress color="inherit" />
       </Backdrop>
