@@ -68,14 +68,17 @@
 
 .playerInput {
   border: none;
+  padding: 5px;
   border-radius: 5px;
   width: 70px;
 }
 
 .darkInput {
   background-color: #444;
+  color: white;
 }
 
 .lightInput {
   background-color: #ccc;
+  color: black;
 }
