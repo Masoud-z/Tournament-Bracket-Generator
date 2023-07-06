@@ -7,14 +7,47 @@
 }
 
 .game {
-  color: unset;
+  text-align: center;
+  border: 2px solid #888;
+  border-radius: 3rem;
+  color: #fff;
+  font-family: roboto;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  position: relative;
   text-decoration: none;
-  border: 1px solid;
-  border-radius: 10px;
-  padding: 10px;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+}
+.game::after {
+  background-color: #888;
+  border-radius: 3rem;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: top left;
+  transition: 0.2s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.game:hover::after {
+  transform: translate(0, 0);
 }
 
 .game:hover {
-  cursor: pointer;
-  background-color: #888;
+  border: 2px solid transparent;
+  color: #fff;
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+.lightGame {
+  color: #000;
 }

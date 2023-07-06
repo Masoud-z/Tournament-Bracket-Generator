@@ -73,7 +73,7 @@ export default function TournmentsList() {
           <Link
             key={game.id}
             href={`/tournment/${game.id}`}
-            className={styles.game}
+            className={`${styles.game} ${!darkMode && styles.lightGame}`}
           >
             {game.name}
           </Link>
