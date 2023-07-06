@@ -15,7 +15,6 @@ import { auth, googleProvider } from "@/config/firebase";
 import { Msg, logStatus } from "@/helper/Contexts";
 
 import styles from "./SignupStyle.module.css";
-import Link from "next/link";
 
 export default function Signup() {
   const route = useRouter();

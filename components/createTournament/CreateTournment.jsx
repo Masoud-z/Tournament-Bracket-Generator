@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { collection, addDoc } from "firebase/firestore";
 
@@ -81,36 +80,36 @@ export default function CreateTournment() {
     });
   };
 
-    //Create the game on the server
-    const submit = async () => {
-      setLoading(true);
-      await addDoc(gamesRef, {
-        name: game.name,
-        levels: game.levels,
-        players: game.players,
-        groups: game.groups,
-        playersCount: game.playersCount,
-        userId: auth.currentUser.uid,
-        created_at: new Date().getTime(),
-      })
-        .then((data) => {
-          setLoading(false);
-          route.push(`/tournment/${data.id}`);
-          setMsg({
-            open: true,
-            message: "Game created!",
-            type: "success",
-          });
-        })
-        .catch((err) => {
-          setLoading(false);
-          setMsg({
-            open: true,
-            message: err.message,
-            type: "error",
-          });
+  //Create the game on the server
+  const submit = async () => {
+    setLoading(true);
+    await addDoc(gamesRef, {
+      name: game.name,
+      levels: game.levels,
+      players: game.players,
+      groups: game.groups,
+      playersCount: game.playersCount,
+      userId: auth.currentUser.uid,
+      created_at: new Date().getTime(),
+    })
+      .then((data) => {
+        setLoading(false);
+        route.push(`/tournment/${data.id}`);
+        setMsg({
+          open: true,
+          message: "Game created!",
+          type: "success",
         });
-    };
+      })
+      .catch((err) => {
+        setLoading(false);
+        setMsg({
+          open: true,
+          message: err.message,
+          type: "error",
+        });
+      });
+  };
 
   //Create name input for each player and put them into related groups
   const groups = [];
@@ -142,7 +141,6 @@ export default function CreateTournment() {
       ))
     );
   }
-
 
   return (
     <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
@@ -191,7 +189,6 @@ export default function CreateTournment() {
         />
       </div>
       <div className={styles.nameInputs}>
-        
         {groups.map((group, index) => (
           <div className={styles.group} key={index}>
             <h3>Group {index + 1}</h3>
