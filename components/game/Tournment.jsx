@@ -1,23 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 
-import Link from "next/link";
-
-import { updateDoc, doc, getDoc } from "firebase/firestore";
-
-import styles from "./Tournment.module.css";
-import { Msg, logStatus, Dark } from "@/helper/Contexts";
-import { db } from "@/config/firebase";
-import { useForm } from "react-hook-form";
-import { Backdrop, Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 
+import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "@/config/firebase";
+
+import { Backdrop, Button, CircularProgress } from "@mui/material";
+
+import { Msg, logStatus, Dark } from "@/helper/Contexts";
+
+import styles from "./Tournment.module.css";
+
 export default function Tournment({ tournmentId }) {
-  const {
-    register,
-    handleSubmit,
-    clearErrors,
-    formState: { errors },
-  } = useForm();
   const route = useRouter();
 
   const { setMsg } = useContext(Msg);
@@ -35,7 +29,6 @@ export default function Tournment({ tournmentId }) {
       getDoc(gameRef)
         .then((tournmentIns) => {
           setTournment({ ...tournmentIns.data(), id: tournmentIns.id });
-          console.log(tournmentIns.data());
           setLoading(false);
         })
         .catch((err) => {
@@ -71,13 +64,14 @@ export default function Tournment({ tournmentId }) {
   //send players score to server
   const submitScore = (players) => {
     const level = players[0].level;
-
+    //check if user added the result to players
     if (!players[0][`result${level}`] || !players[1][`result${level}`]) {
       setMsg({
         open: true,
         message: "Player's result  should not empty",
         type: "error",
       });
+      // check if the results are not the same
     } else if (players[0][`result${level}`] === players[1][`result${level}`]) {
       setMsg({
         open: true,
@@ -86,28 +80,37 @@ export default function Tournment({ tournmentId }) {
       });
     } else {
       setOpenLoading(true);
+      // get the refrence of the tournment from server
       const gameRef = doc(db, "games", tournment.id);
       const newTournment = tournment;
+      // check if the play was final
       if (tournment.levels === level) {
+        // set the tournment status to finished
         newTournment.finished = true;
+        // Set the winner of tournment
         newTournment.winner =
           players[0][`result${level}`] > players[1][`result${level}`]
             ? players[0].playerName
             : players[1].playerName;
       } else if (players[0][`result${level}`] > players[1][`result${level}`]) {
+        // Get the new group that player should be added to
+        //Get the latest group
         let latestGroup = Math.max(
           ...newTournment.players.map((player) =>
             player[`group${level + 1}`] ? player[`group${level + 1}`] : 1
           )
         );
+        // Check if latest group has room for another player
         newTournment.players.filter(
           (player) => player[`group${level + 1}`] === latestGroup
         ).length === 2
           ? latestGroup++
           : "";
+        // Add the winner player to the next level
         const newPlayers = newTournment.players.map((player) => {
           const newPlayer = player;
           if (player.id == players[0].id) {
+            // Create new result for the next level
             newPlayer[`result${level + 1}`] = null;
             newPlayer.level = level + 1;
             newPlayer[`group${level + 1}`] = latestGroup;
@@ -116,16 +119,19 @@ export default function Tournment({ tournmentId }) {
         });
         newTournment.players = newPlayers;
       } else {
+        // Get the new group that player should be added to
         let latestGroup = Math.max(
           ...newTournment.players.map((player) =>
             player[`group${level + 1}`] ? player[`group${level + 1}`] : 1
           )
         );
+        // Check if latest group has room for another player
         newTournment.players.filter(
           (player) => player[`group${level + 1}`] === latestGroup
         ).length === 2
           ? latestGroup++
           : "";
+        // Add the winner player to the next level
         const newPlayers = newTournment.players.map((player) => {
           const newPlayer = player;
           if (player.id == players[1].id) {
@@ -137,7 +143,7 @@ export default function Tournment({ tournmentId }) {
         });
         newTournment.players = newPlayers;
       }
-
+      // Update the tournment on the server
       updateDoc(gameRef, { ...newTournment })
         .then(() => {
           setTournment(newTournment);
@@ -159,6 +165,7 @@ export default function Tournment({ tournmentId }) {
     }
   };
 
+  // Put each player into related group and return the groups
   const getGroups = (level) => {
     const list = tournment.players.filter((player) => player.level >= level);
     const groups = [];
@@ -166,8 +173,6 @@ export default function Tournment({ tournmentId }) {
       const groupPlayers = list.filter(
         (player) => player[`group${level}`] === i
       );
-      console.log(level);
-      console.log(groupPlayers);
       groups.push(
         <div className={styles.group}>
           <h5>Group {i}</h5>
@@ -202,6 +207,7 @@ export default function Tournment({ tournmentId }) {
     return groups;
   };
 
+  // Put groups in to related rounds of play
   const rounds = [];
   if (tournment) {
     for (let i = 1; i <= tournment.levels; i++) {
@@ -234,6 +240,7 @@ export default function Tournment({ tournmentId }) {
       {tournment && (
         <>
           <h1>{tournment.name}</h1>
+          {/* Show the champion name when game finished */}
           {tournment.finished && (
             <>
               <h2 className={styles.championTitle}>Champion: </h2>
@@ -253,6 +260,7 @@ export default function Tournment({ tournmentId }) {
           </div>
         </>
       )}
+      {/* Shows loading bar during updating the tournment on server */}
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={openLoading}

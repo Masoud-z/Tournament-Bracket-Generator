@@ -112,7 +112,7 @@ export default function CreateTournment() {
         });
     };
 
-  //Create name input for eact player and put them into related groups
+  //Create name input for each player and put them into related groups
   const groups = [];
   for (let i = 1; i <= game.groups; i++) {
     const groupPlayers = game.players.filter((player) => player.group1 === i);
