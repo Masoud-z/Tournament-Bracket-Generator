@@ -44,6 +44,7 @@ export default function Layout(props) {
       });
   };
 
+  // Check if the user has signed in before
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setOpenLoading(false);
@@ -53,7 +54,7 @@ export default function Layout(props) {
         setLoggedIn(false);
       }
     });
-  });
+  }, []);
 
   return (
     <div
@@ -94,6 +95,7 @@ export default function Layout(props) {
         </div>
       </header>
       <main>{props.children}</main>
+      {/* Showing message to the user */}
       <Snackbar
         anchorOrigin={{
           vertical: "bottom",
@@ -113,6 +115,7 @@ export default function Layout(props) {
           {msg.message}
         </Alert>
       </Snackbar>
+      {/* Showing loading bar while getting data about user status from server */}
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={openLoading}
