@@ -55,7 +55,7 @@ export default function CreateTournment() {
     return power;
   };
 
-  //Set player base on number of players that user select
+  //Set players and the game base on number of players that user selects
   const onSetPlayer = (count) => {
     const players = [];
     for (let i = 1; i <= count; i++) {
@@ -63,6 +63,7 @@ export default function CreateTournment() {
         id: i,
         playerName: "",
         level: 1,
+        // put each ti players into one group
         group1: Math.ceil(i / 2),
         result1: null,
       });
@@ -80,7 +81,38 @@ export default function CreateTournment() {
     });
   };
 
-  //Put each two user into one group to show them base on groups
+    //Create the game on the server
+    const submit = async () => {
+      setLoading(true);
+      await addDoc(gamesRef, {
+        name: game.name,
+        levels: game.levels,
+        players: game.players,
+        groups: game.groups,
+        playersCount: game.playersCount,
+        userId: auth.currentUser.uid,
+        created_at: new Date().getTime(),
+      })
+        .then((data) => {
+          setLoading(false);
+          route.push(`/tournment/${data.id}`);
+          setMsg({
+            open: true,
+            message: "Game created!",
+            type: "success",
+          });
+        })
+        .catch((err) => {
+          setLoading(false);
+          setMsg({
+            open: true,
+            message: err.message,
+            type: "error",
+          });
+        });
+    };
+
+  //Create name input for eact player and put them into related groups
   const groups = [];
   for (let i = 1; i <= game.groups; i++) {
     const groupPlayers = game.players.filter((player) => player.group1 === i);
@@ -111,36 +143,7 @@ export default function CreateTournment() {
     );
   }
 
-  //Create the game
-  const submit = async () => {
-    setLoading(true);
-    await addDoc(gamesRef, {
-      name: game.name,
-      levels: game.levels,
-      players: game.players,
-      groups: game.groups,
-      playersCount: game.playersCount,
-      userId: auth.currentUser.uid,
-      created_at: new Date().getTime(),
-    })
-      .then((data) => {
-        setLoading(false);
-        route.push(`/tournment/${data.id}`);
-        setMsg({
-          open: true,
-          message: "Game created!",
-          type: "success",
-        });
-      })
-      .catch((err) => {
-        setLoading(false);
-        setMsg({
-          open: true,
-          message: err.message,
-          type: "error",
-        });
-      });
-  };
+
   return (
     <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
       <div className="header">
@@ -188,6 +191,7 @@ export default function CreateTournment() {
         />
       </div>
       <div className={styles.nameInputs}>
+        
         {groups.map((group, index) => (
           <div className={styles.group} key={index}>
             <h3>Group {index + 1}</h3>
