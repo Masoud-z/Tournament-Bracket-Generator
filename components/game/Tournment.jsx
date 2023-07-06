@@ -44,6 +44,8 @@ export default function Tournment({ tournmentId }) {
             message: err.message,
             type: "error",
           });
+          setLoading(false);
+          route.push("/");
         });
     } else {
       route.push("/");
