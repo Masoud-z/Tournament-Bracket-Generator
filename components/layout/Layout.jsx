@@ -1,9 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 
-import { Alert, Backdrop, CircularProgress, Slide, Snackbar } from "@mui/material";
+import {
+  Alert,
+  Backdrop,
+  CircularProgress,
+  Slide,
+  Snackbar,
+} from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
@@ -37,14 +43,18 @@ export default function Layout(props) {
         });
       });
   };
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-    setOpenLoading(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setOpenLoading(false);
+      if (user) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
   });
+
   return (
     <div
       className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}
