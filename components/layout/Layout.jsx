@@ -19,7 +19,7 @@ export default function Layout(props) {
   const logOut = async () => {
     await signOut(auth)
       .then(() => {
-        router.push("./");
+        router.push("/");
         setMsg({
           open: true,
           message: "You successfully signed out",

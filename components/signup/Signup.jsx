@@ -42,7 +42,7 @@ export default function Signup() {
 
   const success = () => {
     setLoading(false);
-    route.push("./");
+    route.push("/");
     setMsg({
       open: true,
       message: "Your account has been created successfully",

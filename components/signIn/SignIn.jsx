@@ -29,7 +29,7 @@ export default function SignIn() {
   useEffect(() => {
     //Check If user is already logged in
     if (loggedIn) {
-      route.push("./");
+      route.push("/");
     }
   }, [loggedIn]);
 
@@ -38,7 +38,7 @@ export default function SignIn() {
 
   const success = () => {
     setLoading(false);
-    route.push("./");
+    route.push("/");
     setMsg({
       open: true,
       message: "You logged in",
