@@ -1,38 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tournament Bracket Generator
 
-## Getting Started
+A website to create brackets for all of your tournaments
+</br>
+:globe_with_meridians: Live: https://tournament-bracket-generator-two.vercel.app/
+</br></br>
+Using Next.js and Material-UI with JavaScript.
+<div align="center">
+<img src="https://camo.githubusercontent.com/528e232c728b497080cbf31d2a7e797caa81e402ff81643f79b2c2c395a29f17/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6a6176617363726970742f6a6176617363726970742d706c61696e2e737667" title="JavaScript" alt="JavaScript" width="40" height="40"  />&nbsp;
+ <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-line.svg" alt="Nextjs" width="40" height="40"/>&nbsp;
+<img src="https://camo.githubusercontent.com/9d77cf86f820de21d3edbdc0ef15f1c880df93633a41c6da7afc3c39b2b8a1c0/68747470733a2f2f6d75692e636f6d2f7374617469632f6c6f676f2e706e67" title="Emotion" alt="MaterialUI" width="40" height="40"/>&nbsp;
+</div>
+</br>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://raw.githubusercontent.com/Masoud-z/Tournament-Bracket-Generator/main/public/1.jpg" alt="Tournament-Bracket-Generator" />
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+___
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### :high_brightness: Stay in touch with me:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- :globe_with_meridians: Website: https://www.masoud.live/
+- 📫 Email: masoud.zeinalabedini@gmail.com
+- <img src="https://raw.githubusercontent.com/Masoud-z/Masoud-z/8b5163f78fdb223d5244fdf50a42f06e06aed444/291709_logo_linked%20in_social%20network_social_social%20media_icon.svg" title="LinkedIn" alt="LinkedIn" width="16" height="16" /> LinkedIn: https://www.linkedin.com/in/masoud-zeinalabedini 
+- <img src="https://raw.githubusercontent.com/Masoud-z/Masoud-z/202fcb428e29f72658feae61b91013aaf51e3964/3787425_telegram_logo_messanger_social_social%20media_icon.svg" title="Telegram" alt="Telegram" width="16" height="16" /> Telegram: https://t.me/M_Zinalabedini
