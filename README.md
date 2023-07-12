@@ -2,7 +2,7 @@
 
 A website to create brackets for all of your tournaments
 </br>
-:globe_with_meridians: Live: https://tournament-bracket-generator-two.vercel.app/
+:globe_with_meridians: Live: https://tournament-bracket-generator-masoud-z.vercel.app/
 </br></br>
 Using Next.js and Material-UI with JavaScript.
 <div align="center">
