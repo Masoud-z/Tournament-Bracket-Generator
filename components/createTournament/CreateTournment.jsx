@@ -89,7 +89,7 @@ export default function CreateTournment() {
       players: game.players,
       groups: game.groups,
       playersCount: game.playersCount,
-      userId: auth.currentUser.uid,
+      uId: auth.currentUser.uid,
       created_at: new Date().getTime(),
     })
       .then((data) => {
