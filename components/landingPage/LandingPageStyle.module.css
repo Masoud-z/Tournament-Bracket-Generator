@@ -8,7 +8,7 @@
 }
 
 .container h1 {
-  font-size: 38px;
+  font-size: 28px;
   text-align: center;
 }
 
@@ -21,6 +21,7 @@
 }
 
 .btn {
+  text-align: center;
   color: unset;
   text-decoration: none;
   padding: 1.5rem 2rem;
@@ -44,6 +45,9 @@
 }
 
 @media (min-width: 900px) {
+  .container h1 {
+    font-size: 38px;
+  }
   .navigation {
     display: none;
   }
