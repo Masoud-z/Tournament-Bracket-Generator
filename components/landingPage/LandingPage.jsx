@@ -23,6 +23,17 @@ export default function LandingPage() {
             </Link>
           </div>
         )}
+
+        {loggedIn && (
+          <div className={`${styles.btnContainer} ${styles.navigation}`}>
+            <Link className={styles.btn} href="/new">
+              Create new Tournament
+            </Link>
+            <Link className={styles.btn} href="/list">
+              Tournaments List
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

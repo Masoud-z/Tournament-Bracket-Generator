@@ -42,3 +42,9 @@
   --t: 0.3s;
   color: #fff;
 }
+
+@media (min-width: 900px) {
+  .navigation {
+    display: none;
+  }
+}
