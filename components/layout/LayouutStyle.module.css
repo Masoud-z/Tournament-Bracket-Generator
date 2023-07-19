@@ -149,3 +149,12 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+@media (max-width: 900px) {
+  .linksContainer {
+    display: none;
+  }
+  .status {
+    display: flex;
+  }
+}

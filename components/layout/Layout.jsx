@@ -91,7 +91,7 @@ export default function Layout(props) {
           </nav>
         )}
 
-        <div className={styles.linksContainer}>
+        <div className={`${styles.linksContainer} ${styles.status}` }>
           {loggedIn && (
             <span className={styles.signOut} onClick={logOut}>
               Sign Out
