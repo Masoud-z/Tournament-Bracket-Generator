@@ -20,3 +20,9 @@
 .group h3 {
   margin-bottom: 10px;
 }
+
+@media (max-width: 900px) {
+  .nameInputs {
+    grid-template-columns: 1fr;
+  }
+}
