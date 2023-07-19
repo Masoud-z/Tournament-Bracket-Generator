@@ -12,7 +12,7 @@ export default function Home() {
           content="Tournament Bracket Generator for task Chanllenge"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/globe.png" />
+        <link rel="icon" href="/Tournament.png" />
       </Head>
       <LandingPage />
     </>

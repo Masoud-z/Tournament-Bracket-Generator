@@ -25,7 +25,7 @@ export default function LandingPage() {
           </div>
         )}
       </div>
-      <Image src="/Tournament.png" alt="globe" width="300" height="300" />
+      <Image src="/Tournament.png" alt="Tournament" width="300" height="300" />
     </div>
   );
 }
