@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, onAuthStateChanged } from "firebase/auth";
@@ -44,8 +44,13 @@ export default function Layout(props) {
       });
   };
 
+  const logoRef = useRef();
   // Check if the user has signed in before
   useEffect(() => {
+    checkWidth();
+    addEventListener("resize", (event) => {
+      checkWidth();
+    });
     onAuthStateChanged(auth, (user) => {
       setOpenLoading(false);
       if (user) {
@@ -55,7 +60,13 @@ export default function Layout(props) {
       }
     });
   }, []);
-
+  function checkWidth() {
+    if (window?.screen.width < 550) {
+      logoRef.current.innerText = "TBG";
+    } else {
+      logoRef.current.innerText = "Tournament Bracket Generator";
+    }
+  }
   return (
     <div
       className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}
@@ -65,7 +76,7 @@ export default function Layout(props) {
           darkMode ? styles.darkHeader : styles.lightHeader
         } `}
       >
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} ref={logoRef}>
           Tournament Bracket Generator
         </Link>
 

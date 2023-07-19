@@ -6,14 +6,13 @@ import { logStatus } from "@/helper/Contexts";
 
 export default function LandingPage() {
   const { loggedIn } = useContext(logStatus);
+
   return (
     <div className={styles.container}>
+      <h1>Generate Brackets</h1>
+      <Image src="/Tournament.png" alt="Tournament" width="200" height="200" />
       <div>
-        <h1>
-          Generate Brackets
-          <br />
-          for All your Tournaments
-        </h1>
+        <h1>for All your Tournaments</h1>
         {!loggedIn && (
           <div className={styles.btnContainer}>
             <Link href="/signup" className={styles.btn}>
@@ -25,7 +24,6 @@ export default function LandingPage() {
           </div>
         )}
       </div>
-      <Image src="/Tournament.png" alt="Tournament" width="300" height="300" />
     </div>
   );
 }

@@ -1,13 +1,15 @@
 .container {
   height: 90vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10vw;
+  gap: 3vh;
 }
 
 .container h1 {
-  font-size: 48px;
+  font-size: 38px;
+  text-align: center;
 }
 
 .btnContainer {
