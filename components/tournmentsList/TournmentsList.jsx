@@ -31,7 +31,7 @@ export default function TournmentsList() {
       getDocs(collection(db, "games"))
         .then((data) => {
           const list = data.docs.filter(
-            (doc) => doc.data().uId == auth.currentUser.uid
+            (doc) => doc.data().uid == auth.currentUser.uid
           );
 
           const dataList = list.map((doc) => ({

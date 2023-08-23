@@ -79,7 +79,6 @@ export default function CreateTournment() {
       };
     });
   };
-
   //Create the game on the server
   const submit = async () => {
     setLoading(true);
@@ -89,7 +88,7 @@ export default function CreateTournment() {
       players: game.players,
       groups: game.groups,
       playersCount: game.playersCount,
-      uId: auth.currentUser.uid,
+      uid: auth.currentUser.uid,
       created_at: new Date().getTime(),
     })
       .then((data) => {
@@ -145,7 +144,7 @@ export default function CreateTournment() {
   return (
     <div className={`container ${darkMode ? "darkShadow" : "lightShadow"}`}>
       <div className="header">
-        <h1>New Tournment</h1>
+        <h1>New Tournament</h1>
         <div onClick={route.back} className="backBtn">
           Back
         </div>
@@ -154,7 +153,9 @@ export default function CreateTournment() {
         <TextField
           {...register("name", { required: true })}
           id="name"
-          label={errors.name ? "Tournment name is required" : "Tournment name"}
+          label={
+            errors.name ? "Tournament name is required" : "Tournament name"
+          }
           variant="outlined"
           type="text"
           error={errors.name}
