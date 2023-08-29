@@ -63,8 +63,10 @@ export default function Layout(props) {
   function checkWidth() {
     if (window?.screen.width < 550) {
       logoRef.current.innerText = "TBG";
+      logoRef.current.style = { fontSize: "55px" };
     } else {
       logoRef.current.innerText = "Tournament Bracket Generator";
+      logoRef.current.style = { fontSize: "24px" };
     }
   }
   return (
@@ -91,7 +93,7 @@ export default function Layout(props) {
           </nav>
         )}
 
-        <div className={`${styles.linksContainer} ${styles.status}` }>
+        <div className={`${styles.linksContainer} ${styles.status}`}>
           {loggedIn && (
             <span className={styles.signOut} onClick={logOut}>
               Sign Out
