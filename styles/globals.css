@@ -157,4 +157,8 @@ html {
     margin: 10px 0 !important;
     width: 250px;
   }
+
+  .header h1 {
+    font-size: 20px;
+  }
 }
