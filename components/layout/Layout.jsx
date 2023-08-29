@@ -63,10 +63,8 @@ export default function Layout(props) {
   function checkWidth() {
     if (window?.screen.width < 550) {
       logoRef.current.innerText = "TBG";
-      logoRef.current.style = { fontSize: "55px" };
     } else {
       logoRef.current.innerText = "Tournament Bracket Generator";
-      logoRef.current.style = { fontSize: "24px" };
     }
   }
   return (
