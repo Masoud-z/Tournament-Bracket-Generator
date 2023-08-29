@@ -239,7 +239,12 @@ export default function Tournment({ tournmentId }) {
       )}
       {tournment && (
         <>
-          <h1>{tournment.name}</h1>
+          <div className={styles.player}>
+            <h1>{tournment.name}</h1>
+            <div onClick={route.back} className="backBtn">
+              Back
+            </div>
+          </div>
           {/* Show the champion name when game finished */}
           {tournment.finished && (
             <>
