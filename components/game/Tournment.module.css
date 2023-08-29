@@ -34,6 +34,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
+  max-width: 400px;
 }
 
 .roundTitle {
@@ -59,7 +60,7 @@
   width: 100%;
   padding: 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   border: 1px dotted;
   gap: 15px;
