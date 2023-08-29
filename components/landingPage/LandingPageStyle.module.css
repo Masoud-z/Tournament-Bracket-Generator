@@ -1,10 +1,11 @@
 .container {
-  height: 100vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 3vh;
+  padding-top: 20px;
 }
 
 .container h1 {
@@ -15,9 +16,10 @@
 .btnContainer {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
 }
 
 .btn {
@@ -45,8 +47,13 @@
 }
 
 @media (min-width: 900px) {
+  .container {
+    padding-top: 0px;
+
+    justify-content: center;
+  }
   .container h1 {
-    font-size: 32px;
+    font-size: 38px;
   }
   .navigation {
     display: none;
