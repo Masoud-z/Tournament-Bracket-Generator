@@ -1,5 +1,5 @@
 .container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +46,7 @@
 
 @media (min-width: 900px) {
   .container h1 {
-    font-size: 38px;
+    font-size: 32px;
   }
   .navigation {
     display: none;

@@ -9,7 +9,7 @@ export default function LandingPage() {
 
   return (
     <div className={styles.container}>
-      <h1>Generate Brackets 3</h1>
+      <h1>Generate Brackets</h1>
       <Image src="/Tournament.png" alt="Tournament" width="200" height="200" />
       <div>
         <h1>for All your Tournaments</h1>
