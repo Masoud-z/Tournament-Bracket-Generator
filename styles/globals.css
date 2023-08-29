@@ -94,6 +94,7 @@ html {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .center {

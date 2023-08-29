@@ -5,3 +5,13 @@
   border-radius: 10px;
 }
 
+@media (max-width: 900px) {
+  .container {
+    margin: 10px 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
