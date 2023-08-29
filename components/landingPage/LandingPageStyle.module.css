@@ -9,7 +9,7 @@
 }
 
 .container h1 {
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
 }
 
@@ -49,7 +49,6 @@
 @media (min-width: 900px) {
   .container {
     padding-top: 0px;
-
     justify-content: center;
   }
   .container h1 {
